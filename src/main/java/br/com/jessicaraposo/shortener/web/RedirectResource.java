@@ -7,14 +7,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 
-@Path("/r")
+@Path("{token}")
 public class RedirectResource {
 
     @Inject
     ShortenerService service;
 
     @GET
-    @Path("/{token}")
     public Response go(@PathParam("token") String token) {
         URI target = service.resolveRedirect(token);
         if (target == null) throw new NotFoundException();

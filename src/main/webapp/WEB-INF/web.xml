@@ -1,22 +1,63 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="3.1">
 
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Production</param-value>
-    </context-param>
-
+    <!-- JSF -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <!-- RESTEasy: API em /api/* -->
+    <servlet>
+        <servlet-name>Resteasy-Api</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>br.com.jessicaraposo.shortener.api.JaxrsConfig</param-value>
+        </init-param>
+        <init-param>
+            <!-- avisa o prefixo ao RESTEasy -->
+            <param-name>resteasy.servlet.mapping.prefix</param-name>
+            <param-value>/api</param-value>
+        </init-param>
+        <init-param>
+            <!-- autodiscovery de @Path -->
+            <param-name>resteasy.scan</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resteasy-Api</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- RESTEasy: Redirect em /r/* -->
+    <servlet>
+        <servlet-name>Resteasy-R</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>br.com.jessicaraposo.shortener.api.JaxrsConfig</param-value>
+        </init-param>
+        <init-param>
+            <param-name>resteasy.servlet.mapping.prefix</param-name>
+            <param-value>/r</param-value>
+        </init-param>
+        <init-param>
+            <param-name>resteasy.scan</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resteasy-R</servlet-name>
+        <url-pattern>/r/*</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
-    </welcome-file-list>
-</web-app>
+        <welc
