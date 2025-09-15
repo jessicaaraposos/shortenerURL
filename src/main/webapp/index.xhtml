@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>URL Shortener</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+        <h2>Encurtador de URL</h2>
+
+        <p:messages id="msgs" showDetail="true" closable="true"/>
+
+        <p:panelGrid columns="2" columnClasses="col1,col2" styleClass="ui-fluid">
+            <h:outputLabel for="url" value="URL original *"/>
+            <p:inputText id="url" value="#{shortenerBean.originalUrl}" required="true" requiredMessage="Informe a URL"/>
+
+            <h:outputLabel for="alias" value="Alias (opcional)"/>
+            <p:inputText id="alias" value="#{shortenerBean.alias}" maxlength="64"/>
+        </p:panelGrid>
+
+        <p:commandButton value="Gerar" actionListener="#{shortenerBean.shorten}"
+                         update="msgs result" icon="pi pi-link" />
+
+        <h:panelGroup id="result">
+            <h:panelGroup rendered="#{not empty shortenerBean.shortUrl}">
+                <h3>URL encurtada:</h3>
+                <h:outputLink id="short" value="#{shortenerBean.shortUrl}" target="_blank">
+                    #{shortenerBean.shortUrl}
+                </h:outputLink>
+                <p:commandButton type="button" value="Copiar" icon="pi pi-copy"
+                                 onclick="navigator.clipboard.writeText('#{shortenerBean.shortUrl}')"/>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:form>
+</h:body>
+</html>
