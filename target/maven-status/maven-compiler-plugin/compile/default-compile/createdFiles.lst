@@ -1,0 +1,9 @@
+br\com\jessicaraposo\shortener\entity\UrlMapping.class
+br\com\jessicaraposo\shortener\api\JaxrsConfig.class
+br\com\jessicaraposo\shortener\app\ShortCodeGenerator.class
+br\com\jessicaraposo\shortener\infra\UrlMappingRepository.class
+br\com\jessicaraposo\shortener\api\ShortenerResource.class
+br\com\jessicaraposo\shortener\web\ShortenerBean.class
+br\com\jessicaraposo\shortener\app\ShortenerService.class
+br\com\jessicaraposo\shortener\api\ShortenerResource$ShortenRequest.class
+br\com\jessicaraposo\shortener\web\RedirectResource.class

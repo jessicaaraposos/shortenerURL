@@ -35,7 +35,7 @@ public class ShortenerResource {
         String baseUrl = uriInfo.getBaseUri().resolve("../").normalize().toString(); // ex: http://host:8080/url-shortener/
         UrlMapping m = service.createOrFail(body.originalUrl.trim(), body.alias, baseUrl);
 
-        String shortUrl = baseUrl + "r/" + m.getCode();
+        String shortUrl = baseUrl + "api/r/" + m.getCode();
         Map<String, Object> resp = new HashMap<>();
         resp.put("shortUrl", shortUrl);
         resp.put("code", m.getCode());

@@ -37,7 +37,7 @@ public class ShortenerBean implements Serializable {
                     .replacePath(base + "/").build().toString(); // http://host:8080/url-shortener/
 
             UrlMapping m = service.createOrFail(originalUrl, alias, baseUrl);
-            this.shortUrl = baseUrl + "r/" + m.getCode();
+            this.shortUrl = baseUrl + "api/r/" + m.getCode();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "URL gerada com sucesso!", null));
         } catch (IllegalArgumentException ex) {
